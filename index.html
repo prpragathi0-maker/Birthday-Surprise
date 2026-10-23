@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Birthday Magic ♡</title>
+
+<style>
+:root {
+  --pink: #f5cbd9;
+  --rose: #c66e89;
+  --cream: #fff8ef;
+  --ink: #654951;
+  --lilac: #e9def7;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+}
+button { font: inherit; }
+.hero {
+  min-height: 90vh;
+  padding: 35px 20px 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 15%, #f6dce5 0, transparent 40%),
+    radial-gradient(ellipse at 90% 85%, #e9def7 0, transparent 40%),
+    #fff8ef;
+}
+.eyebrow {
+  font: 11px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--rose);
+}
+h1 {
+  margin: 20px 0 10px;
+  font-size: clamp(42px, 10vw, 76px);
+  line-height: 1.08;
+  font-weight: normal;
+}
+h1 em { color: var(--rose); }
+.subtitle {
+  max-width: 340px;
+  line-height: 1.8;
+  font-size: 16px;
+  color: #92717c;
+}
+button.action {
+  border: 0;
+  border-radius: 30px;
+  padding: 14px 24px;
+  background: var(--rose);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 15px #c66e892e;
+  transition: transform .2s;
+}
+button.action:hover { transform: translateY(-3px); }
+button:focus-visible {
+  outline: 3px solid #9c70b5;
+  outline-offset: 4px;
+}
+.hero-flower {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+main {
+  width: min(900px, 100%);
+  margin: auto;
+  padding: 20px 20px 60px;
+}
+.section-title {
+  text-align: center;
+  margin: 45px 0 25px;
+}
+.section-title small {
+  color: var(--rose);
+  font: 10px Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+.section-title h2 {
+  font-size: clamp(28px, 6vw, 40px);
+  font-weight: normal;
+  margin: 10px 0;
+}
+.scrapbook {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 18px;
+  align-items: start;
+}
+.polaroid {
+  padding: 10px 10px 20px;
+  background: white;
+  box-shadow: 0 5px 18px #72525b12;
+  text-align: center;
+}
+.polaroid:nth-child(even) { transform: rotate(2deg); }
+.polaroid:nth-child(odd) { transform: rotate(-2deg); }
+.photo {
+  min-height: 145px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+  background: #f7dfe7;
+}
+.polaroid:nth-child(2) .photo { background: #e8e1f4; }
+.polaroid:nth-child(3) .photo { background: #f5e8cb; }
+.polaroid:nth-child(4) .photo { background: #e0ece1; }
+.polaroid p {
+  margin: 14px 0 0;
+  font-style: italic;
+  font-size: 14px;
+}
+.hint {
+  text-align: center;
+  font: 12px Arial, sans-serif;
+  color: #a1878d;
+  margin-top: 22px;
+}
+.letter {
+  margin: 50px auto;
+  padding: 28px 22px;
+  max-width: 570px;
+  background: #f7eaf0;
+  border: 1px solid white;
+  outline: 1px solid #eed4df;
+  outline-offset: 5px;
+  text-align: center;
+}
+.letter h2 {
+  font-weight: normal;
+  font-size: 30px;
+}
+.letter p {
+  line-height: 1.9;
+  font-size: 15px;
+}
+.hidden-message {
+  display: none;
+  margin-top: 22px;
+  padding: 18px;
+  background: #fffaf7;
+  border-radius: 12px;
+  line-height: 1.9;
+  white-space: pre-line;
+}
+.hidden-message.show { display: block; }
+.cake-area {
+  text-align: center;
+  padding: 35px 10px;
+  background: #f3eafa;
+  border-radius: 22px;
+}
+.cake {
+  font-size: 80px;
+  animation: float 2.5s ease-in-out infinite;
+}
+@keyframes float {
+  50% { transform: translateY(-8px); }
+}
+.cake-area p {
+  line-height: 1.8;
+  padding: 0 8px;
+}
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #a1878d;
+  font-size: 13px;
+}
+#confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  animation: fall 3.2s linear forwards;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(650deg); }
+}
+@media (max-width: 360px) {
+  .scrapbook { gap: 14px 10px; }
+  .photo { min-height: 105px; }
+  .polaroid { padding: 7px 7px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div id="confetti" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="hero-flower" aria-hidden="true">୨୧ 🌷 ୨୧</div>
+  <div class="eyebrow">a little page made with love</div>
+
+  <h1>Happy Birthday,<br><em>Sweet Soul!</em></h1>
+
+  <p class="subtitle">
+    Today deserves extra flowers, extra sweetness,
+    and a little bit of birthday magic. ♡
+  </p>
+
+  <button class="action" id="startButton">
+    Open your surprise ✉
+  </button>
+</header>
+
+<main>
+  <section id="memories">
+    <div class="section-title">
+      <small>little things, big feelings</small>
+      <h2>A page full of love</h2>
+    </div>
+
+    <div class="scrapbook">
+      <article class="polaroid">
+        <div class="photo" aria-label="Flower illustration">🌷</div>
+        <p>May your days bloom beautifully</p>
+      </article>
+
+      <article class="polaroid">
+        <div class="photo" aria-label="Gift illustration">🎁</div>
+        <p>Little surprises, endless smiles</p>
+      </article>
+
+      <article class="polaroid">
+        <div class="photo" aria-label="Star illustration">⭐</div>
+        <p>You make ordinary days special</p>
+      </article>
+
+      <article class="polaroid">
+        <div class="photo" aria-label="Heart illustration">💌</div>
+        <p>A thousand wishes, just for you</p>
+      </article>
+    </div>
+
+    <p class="hint">
+      ♡ Replace these illustrations with your favourite memories.
+    </p>
+  </section>
+
+  <section class="letter" id="letter">
+    <div style="font-size:30px" aria-hidden="true">💌</div>
+    <h2>A tiny letter for you</h2>
+    <p>
+      Some people make the world feel softer just by being in it.
+      Today, I hope you receive the same warmth and happiness
+      that you bring to the people around you.
+    </p>
+
+    <button class="action" id="letterButton">
+      Read your little letter ♡
+    </button>
+
+    <div class="hidden-message" id="hiddenMessage">
+      You deserve beautiful beginnings, gentle days,
+      genuine smiles, and dreams that come true.
+
+      May this new chapter bring you countless reasons
+      to feel proud, loved, and happy.
+
+      Happy Birthday! 🌷🎂
+
+      With lots of love, always ♡
+    </div>
+  </section>
+
+  <section class="cake-area">
+    <div class="cake" aria-hidden="true">🎂</div>
+    <h2 style="font-weight:normal">Make a birthday wish</h2>
+    <p>
+      Take a little moment, make your wish,
+      and let the birthday magic begin. ✨
+    </p>
+    <button class="action" id="wishButton">
+      My wish is ready! ✨
+    </button>
+    <p id="wishMessage" aria-live="polite"></p>
+  </section>
+</main>
+
+<footer>
+  made with love, flowers & a little birthday magic ♡
+</footer>
+
+<script>
+const startButton = document.getElementById("startButton");
+const letterButton = document.getElementById("letterButton");
+const hiddenMessage = document.getElementById("hiddenMessage");
+const wishButton = document.getElementById("wishButton");
+const wishMessage = document.getElementById("wishMessage");
+const confetti = document.getElementById("confetti");
+
+function celebrate() {
+  const colours = ["🌸", "💗", "✨", "🎀", "🌷", "💕"];
+
+  for (let i = 0; i < 45; i++) {
+    const piece = document.createElement("span");
+    piece.className = "confetti-piece";
+    piece.textContent = colours[
+      Math.floor(Math.random() * colours.length)
+    ];
+    piece.style.left = Math.random() * 100 + "%";
+    piece.style.animationDelay = Math.random() * 1.4 + "s";
+    piece.style.fontSize = (12 + Math.random() * 15) + "px";
+
+    confetti.appendChild(piece);
+    piece.addEventListener("animationend", () => piece.remove());
+  }
+}
+
+startButton.addEventListener("click", () => {
+  document.getElementById("memories").scrollIntoView({
+    behavior: "smooth"
+  });
+  celebrate();
+});
+
+letterButton.addEventListener("click", () => {
+  const isOpen = hiddenMessage.classList.toggle("show");
+  letterButton.textContent = isOpen
+    ? "Close your little letter ♡"
+    : "Read your little letter ♡";
+
+  if (isOpen) {
+    celebrate();
+    hiddenMessage.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+  }
+});
+
+wishButton.addEventListener("click", () => {
+  wishMessage.textContent =
+    "Your wish is on its way! May something lovely find you today. 💗";
+  celebrate();
+  wishButton.disabled = true;
+  wishButton.textContent = "Wish sent ♡";
+});
+</script>
+</body>
+</html>
